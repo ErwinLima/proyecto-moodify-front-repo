@@ -7,17 +7,23 @@ import CreateAccount from './pages/CreateAccount'; // Importa el componente Crea
 import RecommendationForm from './pages/RecommendationForm'; // Importa el componente RecommendationForm
 import RecommendationList from './pages/RecommendationList'; // Importa el componente RecommendationList
 import RecommendationHistory from './pages/RecommendationHistory'; // Importa el componente RecommendationHistory
+import Footer from './components/common/Footer/Footer'; // Asegúrate de importar el Footer
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="/home" element={<Home />} />
-      <Route path="/create-account" element={<CreateAccount />} />
-      <Route path="/recommendation-form" element={<RecommendationForm />} />
-      <Route path="/recommendation-list" element={<RecommendationList />} />
-      <Route path="/recommendation-history" element={<RecommendationHistory />} />
-    </Routes>
+    <div className="App">
+      <div className="Content">
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/create-account" element={<CreateAccount />} />
+          <Route path="/recommendation-form" element={<RecommendationForm />} />
+          <Route path="/recommendation-list" element={<RecommendationList />} />
+          <Route path="/recommendation-history" element={<RecommendationHistory />} />
+        </Routes>
+      </div>
+      <Footer />
+    </div>
   );
 }
 
