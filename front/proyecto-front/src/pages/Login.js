@@ -1,6 +1,6 @@
 import React from "react";
 import MyTextField from "../components/common/input/MyTextField.js";
-import "../styles/login.css";
+import "./styles/login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import MyButton from "../components/common/Button/MyButton.js";

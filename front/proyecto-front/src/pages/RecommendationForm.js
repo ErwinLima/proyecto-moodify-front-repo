@@ -1,7 +1,14 @@
-import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
 import Navbar from "../components/common/Navbar/Navbar";
-import styles from './styles/RecommendationForm.module.css';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import styles from "./styles/RecommendationForm.module.css";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import MyTextField from "../components/common/input/MyTextField";
 
 const RecommendationForm = () => {
@@ -20,10 +27,10 @@ const RecommendationForm = () => {
                 label="Géneros"
                 onChange={(e) => console.log(e.target.value)}
               >
-                <MenuItem value={'SA'}>Salsa</MenuItem>
-                <MenuItem value={'RE'}>Reggeaton</MenuItem>
-                <MenuItem value={'RO'}>Rock</MenuItem>
-                <MenuItem value={'PO'}>Pop</MenuItem>
+                <MenuItem value={"SA"}>Salsa</MenuItem>
+                <MenuItem value={"RE"}>Reggeaton</MenuItem>
+                <MenuItem value={"RO"}>Rock</MenuItem>
+                <MenuItem value={"PO"}>Pop</MenuItem>
               </Select>
 
               <InputLabel id="select-label-country">País</InputLabel>
@@ -33,13 +40,15 @@ const RecommendationForm = () => {
                 label="País"
                 onChange={(e) => console.log(e.target.value)}
               >
-                <MenuItem value={'PE'}>Perú</MenuItem>
-                <MenuItem value={'CO'}>Colombia</MenuItem>
-                <MenuItem value={'AR'}>Argentina</MenuItem>
-                <MenuItem value={'CL'}>Chile</MenuItem>
+                <MenuItem value={"PE"}>Perú</MenuItem>
+                <MenuItem value={"CO"}>Colombia</MenuItem>
+                <MenuItem value={"AR"}>Argentina</MenuItem>
+                <MenuItem value={"CL"}>Chile</MenuItem>
               </Select>
 
-              <InputLabel id="input-label-quantity">Cantidad de recomendaciones</InputLabel>
+              <InputLabel id="input-label-quantity">
+                Cantidad de recomendaciones
+              </InputLabel>
               <MyTextField
                 labelText="Cantidad de recomendaciones"
                 type="number"
@@ -55,19 +64,19 @@ const RecommendationForm = () => {
                 Subir fotografía
               </Button>
 
-              <Button 
-                variant="contained" 
+              <Button
+                variant="contained"
                 color="secondary"
-                sx={{ width: '468px', height: '65px'}}
-                >
-                Obtener recomendación</Button>
-
+                sx={{ width: "468px", height: "65px" }}
+              >
+                Obtener recomendación
+              </Button>
             </FormControl>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default RecommendationForm;

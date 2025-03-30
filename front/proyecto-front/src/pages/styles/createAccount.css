@@ -1,13 +1,15 @@
-h1 {
+.title {
+  position: relative;
+  top: -30px;
   font-weight: 400;
   margin-right: auto;
   text-align: start;
-  padding: 0 50px;
   color: white !important;
+  font-size: 35px;
 }
 
 .login-box {
-  padding: 30px 50px;
+  padding: 15px 50px;
 }
 
 .form {
@@ -19,5 +21,5 @@ h1 {
 .input-group {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px 60px;
+  gap: 15px 60px;
 }

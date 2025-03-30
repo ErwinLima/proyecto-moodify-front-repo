@@ -1,14 +1,14 @@
 import React from "react";
 import MyTextField from "../components/common/input/MyTextField.js";
-import "../styles/createAccount.css";
+import "./styles/createAccount.css";
 import MyButton from "../components/common/Button/MyButton.js";
 import MyLink from "../components/common/Link/MyLink.js";
 
 const CreateAccount = () => {
   return (
     <div>
-      <h1>Crea tu cuenta</h1>
       <div className="login-box">
+        <h1 className="title">Crea tu cuenta</h1>
         <div className="form">
           <div className="input-group">
             <MyTextField labelText="Nombre"></MyTextField>
