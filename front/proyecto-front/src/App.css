@@ -1,8 +1,5 @@
 .App {
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
 }
 
 .App-logo {
@@ -41,5 +38,5 @@
 }
 
 .Content {
-  flex: 1; /* Esto asegura que el contenido ocupe el espacio disponible */
+  flex: 1;
 }

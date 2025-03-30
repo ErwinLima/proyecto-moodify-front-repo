@@ -1,0 +1,23 @@
+h1 {
+  font-weight: 400;
+  margin-right: auto;
+  text-align: start;
+  padding: 0 50px;
+  color: white !important;
+}
+
+.login-box {
+  padding: 30px 50px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.input-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 60px;
+}
