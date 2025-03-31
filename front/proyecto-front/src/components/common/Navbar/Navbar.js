@@ -24,9 +24,8 @@ const Navbar = () => {
         </div>
         <div className={styles.Navbar_account}>
           <div className={styles.Navbar_account_item}>
-            {user} | Cuenta
+            <Link to="/">{user} | Cerrar sesión</Link>
           </div>
-
         </div>
       </div>
     </nav>
