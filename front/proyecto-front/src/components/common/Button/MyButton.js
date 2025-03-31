@@ -11,6 +11,7 @@ const MyButton = ({ text }) => {
         ":hover": { backgroundColor: "#1F7A41" },
         padding: "12px 24px",
         fontWeight: 600,
+        color: "#ffffff",
       }}
     >
       {text}

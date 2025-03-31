@@ -5,7 +5,7 @@
   height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   flex-direction: column;
   background-image: url("../../../../public/background.png");
   background-size: cover;
@@ -25,6 +25,43 @@
 
 .content {
   width: 100%;
+  max-height: calc(100vh - 50px);
   flex: 1;
   z-index: 2;
+  overflow: hidden;
+  position: relative;
+}
+
+.content::before,
+.content::after {
+  content: "";
+  position: absolute;
+  top: 70px;
+  bottom: 0;
+  width: 70px;
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 1;
+}
+
+.content::before {
+  left: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0.4) 30%,
+    rgba(0, 0, 0, 0.2) 60%,
+    transparent 100%
+  );
+}
+
+.content::after {
+  right: 0;
+  background: linear-gradient(
+    270deg,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0.4) 30%,
+    rgba(0, 0, 0, 0.2) 60%,
+    transparent 100%
+  );
 }
