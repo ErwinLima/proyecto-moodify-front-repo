@@ -1,0 +1,22 @@
+.RecommendationHistory_Body{
+    padding-left: 71px;
+    padding-right: 71px;
+    padding-top: 77px;
+}
+
+.RecommendationHistory_Container{
+    background: linear-gradient(
+        to bottom,
+        rgba(5, 10, 5, 0.3),
+        rgba(52, 112, 56, 0.3)
+    );
+    width: 100%;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.RecommendationHistory_Img{
+    width: 52px;
+    height: 52px;
+}
