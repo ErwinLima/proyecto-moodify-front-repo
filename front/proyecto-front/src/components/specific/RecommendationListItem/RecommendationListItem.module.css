@@ -1,0 +1,40 @@
+.RecommendationListItem_Container {
+    width: 1184px;
+    height: 140px;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    margin: 23px 0;
+}
+
+.RecommendationListItem_Container_Info{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 35px;
+}
+
+.RecommendationListItem_Container_Info_Image{
+    width: 96px;
+    height: 96px;
+}
+
+.RecommendationListItem_Container_Info_Text{
+    padding-left: 32px;
+}
+
+.RecommendationListItem_Container_SongName{
+    font-family: 'Poppins', sans-serif;
+    font-style: bold;
+    font-weight: 700;
+    font-size: 24px;
+    color: rgba(140, 148, 141, 1);
+}
+
+.RecommendationListItem_Container_SongArtist{
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    color: rgba(140, 148, 141, 1);
+}

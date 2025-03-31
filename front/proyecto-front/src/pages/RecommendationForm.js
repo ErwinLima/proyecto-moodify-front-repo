@@ -4,6 +4,7 @@ import { styled } from '@mui/material/styles';
 import styles from './styles/RecommendationForm.module.css';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import MyTextField from "../components/common/input/MyTextField";
+import { Link } from "react-router-dom";
 
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
@@ -98,7 +99,12 @@ const RecommendationForm = () => {
                 color="secondary"
                 sx={{ width: '468px', height: '65px', marginTop: '20px' }}
               >
+                <Link
+                  to="/recommendation-list"
+                  style={{ textDecoration: 'none', color: 'white' }}
+                >
                 Obtener recomendación
+                </Link>
               </Button>
             </div>
           </div>
