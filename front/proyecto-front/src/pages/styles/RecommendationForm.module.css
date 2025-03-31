@@ -12,11 +12,11 @@ h1 {
 .RecommendationForm_Container {
   background: linear-gradient(
     to bottom,
-    rgba(5, 10, 5, 1),
-    rgba(52, 112, 56, 1)
+    rgba(5, 10, 5, 0.3),
+    rgba(52, 112, 56, 0.3)
   );
   width: 100%;
-  height: 300px;
+  height: 450px;
   border-radius: 20px;
   display: flex;
   justify-content: center;
@@ -24,7 +24,28 @@ h1 {
 }
 
 .RecommendationForm_Container_Form {
-  width: 970px;
-  height: 200px;
-  background-color: rgba(255, 255, 255, 0.17);
+    margin-top: 92px;
+    width: 970px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espaciado entre filas */
+}
+
+.RecommendationForm_Columns {
+    display: flex;
+    justify-content: space-between; /* Asegura la separación entre las columnas */
+    gap: 185px; /* Espaciado entre las dos columnas */
+}
+
+.RecommendationForm_Column {
+    display: flex;
+    flex-direction: column;
+    gap: 26px; /* Espaciado entre los elementos de cada columna */
+}
+
+.RecommendationForm_Button {
+    margin-top: 100px; 
+    padding-bottom: 30px;
+    align-self: center; /* Centra el botón horizontalmente */
 }
