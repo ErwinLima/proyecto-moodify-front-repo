@@ -2,16 +2,16 @@ import React from "react";
 import TextField from "@mui/material/TextField";
 import styles from "./MyTextField.module.css";
 
-const MyTextField = ({ labelText, type = "text" }) => {
+const MyTextField = ({ labelText, placeholder, type = "text" }) => {
   return (
     <div className={styles.input}>
-      <label>{labelText}</label>
+      {labelText && <label className={styles.labelText}>{labelText}</label>}
       <TextField
         id="outlined-basic"
-        label=""
+        label={placeholder}
         variant="outlined"
         color="success"
-        size="small"
+        size={labelText ? "small" : "normal"}
         type={type}
         sx={{
           width: "100%",

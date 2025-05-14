@@ -1,12 +1,14 @@
-h1 {
+h2 {
   padding: 0;
   margin: 0;
+  color: #fff;
 }
 
 .RecommendationForm_Body {
+  height: calc(100vh - 150px);
   padding-left: 71px;
   padding-right: 71px;
-  padding-top: 77px;
+  padding-top: 30px;
 }
 
 .RecommendationForm_Container {
@@ -17,35 +19,34 @@ h1 {
   );
   width: 100%;
   height: 450px;
+  height: calc(100% - 50px);
   border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 2%;
 }
 
 .RecommendationForm_Container_Form {
-    margin-top: 92px;
-    width: 970px;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* Espaciado entre filas */
+  width: 970px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Espaciado entre filas */
 }
 
 .RecommendationForm_Columns {
-    display: flex;
-    justify-content: space-between; /* Asegura la separación entre las columnas */
-    gap: 185px; /* Espaciado entre las dos columnas */
+  display: flex;
+  justify-content: space-between; /* Asegura la separación entre las columnas */
+  gap: 100px; /* Espaciado entre las dos columnas */
 }
 
 .RecommendationForm_Column {
-    display: flex;
-    flex-direction: column;
-    gap: 26px; /* Espaciado entre los elementos de cada columna */
+  display: flex;
+  flex-direction: column;
+  gap: 26px; /* Espaciado entre los elementos de cada columna */
+  justify-content: space-between;
 }
 
 .RecommendationForm_Button {
-    margin-top: 100px; 
-    padding-bottom: 30px;
-    align-self: center; /* Centra el botón horizontalmente */
+  align-self: center; /* Centra el botón horizontalmente */
 }
