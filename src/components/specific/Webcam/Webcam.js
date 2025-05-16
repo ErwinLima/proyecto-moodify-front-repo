@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { styled } from "@mui/material/styles";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
@@ -23,6 +24,9 @@ const WebcamCapture = () => {
   const webcamRef = useRef(null);
   const [capturedImage, setCapturedImage] = useState(null);
   const [flash, setFlash] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [emotion, setEmotion] = useState(null);
+  const [cameraOn, setCameraOn] = useState(false);
 
   const videoConstraints = {
     width: 1280,
@@ -37,6 +41,31 @@ const WebcamCapture = () => {
 
     const imageSrc = webcamRef.current.getScreenshot();
     setCapturedImage(imageSrc);
+    analyzeEmotions(imageSrc);
+    console.log(emotion);
+  };
+
+  const analyzeEmotions = async (imageSrc) => {
+    setLoading(true);
+    const base64 = imageSrc.replace(/^data:image\/\w+;base64,/, "");
+
+    try {
+      const response = await fetch("http://localhost:5000/analyze-emotion", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ image: base64 }),
+      });
+
+      const data = await response.json();
+      setEmotion(data.emotionName);
+      console.log("Emociones detectadas:", data);
+    } catch (error) {
+      console.error("Error al analizar emociones:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -44,7 +73,9 @@ const WebcamCapture = () => {
       {flash && <div className="flash-overlay" />}
       <div className="card">
         <div className="camera-container">
-          {!capturedImage ? (
+          {!cameraOn ? (
+            <div className=" webcam camera-off-message">Cámara apagada</div>
+          ) : !capturedImage ? (
             <>
               <Webcam
                 audio={false}
@@ -60,36 +91,43 @@ const WebcamCapture = () => {
           ) : (
             <>
               <img src={capturedImage} alt="Captura" className="captured-img" />
+              {emotion && (
+                <div className="emotion-result">
+                  Emoción detectada: <strong>{emotion}</strong>
+                </div>
+              )}
             </>
           )}
         </div>
+
         <div className="btn-option-group">
           <Button
-            sx={{ width: "220px", height: "55px" }}
+            sx={{ width: "160px", height: "40px", fontSize: "12px" }}
             component="label"
             role={undefined}
             variant="outlined"
             tabIndex={-1}
             startIcon={<FontAwesomeIcon icon={faCamera} />}
-            onClick={() => setCapturedImage(null)}
+            onClick={() => {
+              setCameraOn(!cameraOn);
+              setCapturedImage(null);
+            }}
           >
-            Abrir cámara
+            {cameraOn ? "Apagar" : "Encender"}
           </Button>
-          <Button
-            sx={{ width: "220px", height: "55px" }}
-            component="label"
-            role={undefined}
-            variant="outlined"
-            tabIndex={-1}
-            startIcon={<CloudUploadIcon />}
-          >
-            Subir fotografía
-            <VisuallyHiddenInput
-              type="file"
-              onChange={(event) => console.log(event.target.files)}
-              multiple
-            />
-          </Button>
+          {capturedImage && cameraOn && (
+            <Button
+              sx={{ width: "160px", height: "60px", fontSize: "12px" }}
+              component="label"
+              variant="outlined"
+              startIcon={<FontAwesomeIcon icon={faArrowLeft} />}
+              onClick={() => {
+                setCapturedImage(null);
+              }}
+            >
+              Volver a la camara
+            </Button>
+          )}
         </div>
       </div>
     </div>

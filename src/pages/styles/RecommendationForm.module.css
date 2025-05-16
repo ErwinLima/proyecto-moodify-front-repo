@@ -6,9 +6,10 @@ h2 {
 
 .RecommendationForm_Body {
   height: calc(100vh - 150px);
-  padding-left: 71px;
-  padding-right: 71px;
-  padding-top: 30px;
+  padding: 30px 71px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .RecommendationForm_Container {
@@ -18,35 +19,19 @@ h2 {
     rgba(52, 112, 56, 0.2)
   );
   width: 100%;
-  height: 450px;
-  height: calc(100% - 50px);
+  height: 100%;
+  padding: 30px 20px;
   border-radius: 20px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  margin-top: 2%;
+  justify-content: center;
 }
 
 .RecommendationForm_Container_Form {
-  width: 970px;
+  width: 80%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Espaciado entre filas */
-}
-
-.RecommendationForm_Columns {
-  display: flex;
-  justify-content: space-between; /* Asegura la separación entre las columnas */
-  gap: 100px; /* Espaciado entre las dos columnas */
-}
-
-.RecommendationForm_Column {
-  display: flex;
-  flex-direction: column;
-  gap: 26px; /* Espaciado entre los elementos de cada columna */
-  justify-content: space-between;
-}
-
-.RecommendationForm_Button {
-  align-self: center; /* Centra el botón horizontalmente */
+  justify-content: center;
+  overflow: hidden;
 }
