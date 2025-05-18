@@ -6,6 +6,14 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from '@emotion/react';
 import theme from './Theme';
+import * as Sentry from "@sentry/react";
+
+Sentry.init({
+  dsn: "https://5e24d1cd9ef1dd01bb9c9b21b6ba7212@o4509324711690240.ingest.us.sentry.io/4509340652929024",
+  // Setting this option to true will send default PII data to Sentry.
+  // For example, automatic IP address collection on events
+  sendDefaultPii: true
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

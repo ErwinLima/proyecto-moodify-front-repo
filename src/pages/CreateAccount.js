@@ -34,13 +34,15 @@ const CreateAccount = () => {
     try {
       console.log("Antes de consulta");
 
-      let response = await axios.post("http://localhost:5000/users/signup", {
-        name,
-        lastname,
-        birthdate,
-        user,
-        password,
-      });
+      let response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/users/signup`,
+        {
+          name,
+          lastname,
+          birthdate,
+          user,
+          password,
+        });
 
       console.log(response);
       navigate("/home");
