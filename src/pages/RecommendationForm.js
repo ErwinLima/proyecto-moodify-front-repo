@@ -10,7 +10,6 @@ import { useNavigate } from "react-router-dom";
 const RecommendationForm = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [emotion, setEmotion] = useState(null);
 
   const handleGetRecommendation = async () => {
     const accessToken = localStorage.getItem("accessToken");
@@ -37,10 +36,13 @@ const RecommendationForm = () => {
       }
 
       const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data?.error || "Error al obtener la recomendación.");
+      }
+
       localStorage.setItem("emotionData", JSON.stringify(data)); // Guarda emoción y canciones
       navigate("/recommendation-list");
     } catch (err) {
-      console.error(err);
       alert("Ocurrió un error al obtener la recomendación.");
     } finally {
       setLoading(false);
