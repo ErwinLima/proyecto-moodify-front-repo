@@ -20,7 +20,8 @@ const Login = () => {
         {
           user,
           password,
-        });
+        }
+      );
 
       // Guardar tokens
       localStorage.setItem("accessToken", response.data.accessToken);

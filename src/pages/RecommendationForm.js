@@ -21,14 +21,17 @@ const RecommendationForm = () => {
     const base64 = imageSrc.replace(/^data:image\/\w+;base64,/, "");
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:5000/analyze-emotion", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `${accessToken} ${refreshToken}`, // <- tokens separados por espacio
-        },
-        body: JSON.stringify({ image: base64, userId: 1 }),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/analyze-emotion`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `${accessToken},${refreshToken}`,
+          },
+          body: JSON.stringify({ image: base64 }),
+        }
+      );
 
       const newToken = response.headers.get("x-new-access-token");
       if (newToken) {

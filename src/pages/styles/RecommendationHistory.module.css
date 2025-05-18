@@ -1,22 +1,57 @@
-.RecommendationHistory_Body{
-    padding-left: 71px;
-    padding-right: 71px;
-    padding-top: 77px;
+h2 {
+  margin-bottom: 20px;
 }
 
-.RecommendationHistory_Container{
-    background: linear-gradient(
-        to bottom,
-        rgba(5, 10, 5, 0.1),
-        rgba(52, 112, 56, 0.2)
-    );
-    width: 100%;
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
+.RecommendationHistory_Body {
+  padding: 30px 71px 0 71px;
 }
 
-.RecommendationHistory_Img{
-    width: 52px;
-    height: 52px;
+.RecommendationHistory_Container {
+  background: linear-gradient(
+    to bottom,
+    rgba(5, 10, 5, 0.1),
+    rgba(52, 112, 56, 0.2)
+  );
+  width: 100%;
+  max-width: 100%;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.RecommendationHistory_Container td {
+  padding: 10px 25px;
+}
+.RecommendationHistory_Img {
+  width: 45px;
+  height: 45px;
+}
+
+.tableBody {
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+.stickyHeader {
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(6px);
+  background-color: rgb(5, 17, 5) !important;
+  z-index: 2;
+  border-bottom: 1px solid #474747 !important;
+}
+
+.tableContainer {
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+  border-radius: 12px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.tableRowCustom td {
+  border-bottom: 1px solid #474747; /* Cambia #ccc por el color que desees */
+}
+
+.tableRowCustom:last-child td {
+  border-bottom: none;
 }
