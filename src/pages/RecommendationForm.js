@@ -12,30 +12,10 @@ const RecommendationForm = () => {
   const [loading, setLoading] = useState(false);
   const [emotion, setEmotion] = useState(null);
 
-  const analyzeEmotions = async (imageSrc) => {
-    setLoading(true);
-    const base64 = imageSrc.replace(/^data:image\/\w+;base64,/, "");
-
-    try {
-      const response = await fetch("http://localhost:5000/analyze-emotion", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ image: base64, userId: 1 }),
-      });
-
-      const data = await response.json();
-      setEmotion(data.emotion);
-      console.log("Canciones", data);
-    } catch (error) {
-      console.error("Error al analizar emociones:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const handleGetRecommendation = async () => {
+    const accessToken = localStorage.getItem("accessToken");
+    const refreshToken = localStorage.getItem("refreshToken");
+
     const imageSrc = localStorage.getItem("capturedImage");
     if (!imageSrc) return alert("Primero debes capturar una imagen.");
 
@@ -44,9 +24,17 @@ const RecommendationForm = () => {
     try {
       const response = await fetch("http://localhost:5000/analyze-emotion", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `${accessToken} ${refreshToken}`, // <- tokens separados por espacio
+        },
         body: JSON.stringify({ image: base64, userId: 1 }),
       });
+
+      const newToken = response.headers.get("x-new-access-token");
+      if (newToken) {
+        localStorage.setItem("accessToken", newToken);
+      }
 
       const data = await response.json();
       localStorage.setItem("emotionData", JSON.stringify(data)); // Guarda emoción y canciones
