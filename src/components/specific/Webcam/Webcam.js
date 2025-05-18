@@ -41,31 +41,7 @@ const WebcamCapture = () => {
 
     const imageSrc = webcamRef.current.getScreenshot();
     setCapturedImage(imageSrc);
-    analyzeEmotions(imageSrc);
-    console.log(emotion);
-  };
-
-  const analyzeEmotions = async (imageSrc) => {
-    setLoading(true);
-    const base64 = imageSrc.replace(/^data:image\/\w+;base64,/, "");
-
-    try {
-      const response = await fetch("http://localhost:5000/analyze-emotion", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ image: base64 }),
-      });
-
-      const data = await response.json();
-      setEmotion(data.emotionName);
-      console.log("Emociones detectadas:", data);
-    } catch (error) {
-      console.error("Error al analizar emociones:", error);
-    } finally {
-      setLoading(false);
-    }
+    localStorage.setItem("capturedImage", imageSrc);
   };
 
   return (
