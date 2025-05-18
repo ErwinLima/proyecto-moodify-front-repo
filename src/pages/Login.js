@@ -7,11 +7,22 @@ import MyLink from "../components/common/Link/MyLink.js";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 
 const Login = () => {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: "",
+    severity: "success",
+  });
   const navigate = useNavigate();
+
+  const handleCloseSnackbar = () => {
+    setSnackbar({ ...snackbar, open: false });
+  };
 
   const handleLogin = async () => {
     try {
@@ -29,8 +40,11 @@ const Login = () => {
 
       navigate("/home");
     } catch (error) {
-      console.error("Error en login:", error.response?.data || error.message);
-      alert("Credenciales inválidas");
+      setSnackbar({
+        open: true,
+        message: "Credenciales inválidas",
+        severity: "error",
+      });
     }
   };
 
@@ -62,6 +76,22 @@ const Login = () => {
         linkText="Crear cuenta"
         to="/create-account"
       ></MyLink>
+
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={2000}
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        sx={{ zIndex: 2000, mb: -10 }}
+      >
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity={snackbar.severity}
+          sx={{ width: "100%" }}
+        >
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
     </div>
   );
 };

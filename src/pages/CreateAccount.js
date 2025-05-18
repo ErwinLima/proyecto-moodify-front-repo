@@ -5,6 +5,8 @@ import MyButton from "../components/common/Button/MyButton.js";
 import MyLink from "../components/common/Link/MyLink.js";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 
 const CreateAccount = () => {
   const [form, setForm] = useState({
@@ -14,6 +16,14 @@ const CreateAccount = () => {
     user: "",
     password: "",
     confirmPassword: "",
+  });
+
+  const [creating, setCreating] = useState(false);
+
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: "",
+    severity: "success", // 'success' | 'error'
   });
 
   const navigate = useNavigate();
@@ -28,31 +38,46 @@ const CreateAccount = () => {
     console.log(form);
 
     if (password !== confirmPassword) {
-      return alert("Las contraseñas no coinciden");
+      return setSnackbar({
+        open: true,
+        message: "Las contraseñas no coinciden",
+        severity: "error",
+      });
     }
 
     try {
       console.log("Antes de consulta");
 
-      let response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/users/signup`,
-        {
-          name,
-          lastname,
-          birthdate,
-          user,
-          password,
-        });
+      await axios.post(`${process.env.REACT_APP_API_URL}/users/signup`, {
+        name,
+        lastname,
+        birthdate,
+        user,
+        password,
+      });
 
-      console.log(response);
-      navigate("/home");
+      setSnackbar({
+        open: true,
+        message: "¡Cuenta creada exitosamente!",
+        severity: "success",
+      });
+
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
     } catch (error) {
-      console.error(
-        "Error al crear cuenta:",
-        error.response?.data || error.message
-      );
-      alert("Error al crear cuenta");
+      setSnackbar({
+        open: true,
+        message: "Error al crear cuenta",
+        severity: "error",
+      });
+    } finally {
+      setCreating(false);
     }
+  };
+
+  const handleCloseSnackbar = () => {
+    setSnackbar({ ...snackbar, open: false });
   };
 
   return (
@@ -102,7 +127,11 @@ const CreateAccount = () => {
             />
           </div>
 
-          <MyButton text="Crear cuenta" onClick={handleCreate}></MyButton>
+          <MyButton
+            text={creating ? "Creando..." : "Crear cuenta"}
+            onClick={handleCreate}
+            disabled={creating}
+          />
         </div>
         <MyLink
           text="¿Ya tienes una cuenta?"
@@ -110,6 +139,22 @@ const CreateAccount = () => {
           to="/"
         ></MyLink>
       </div>
+
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={3000}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        onClose={handleCloseSnackbar}
+        sx={{ zIndex: 2000 }}
+      >
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity={snackbar.severity}
+          sx={{ width: "100%" }}
+        >
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
     </div>
   );
 };
