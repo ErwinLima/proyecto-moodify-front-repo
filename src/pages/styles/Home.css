@@ -1,3 +1,8 @@
+.favorite-recommendations h3 {
+  margin: 0;
+  margin-bottom: 20px;
+}
+
 .favorite-recommendations {
   color: #fff;
   padding: 10px 70px;

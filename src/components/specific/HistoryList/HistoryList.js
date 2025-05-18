@@ -1,39 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./HistoryList.module.css";
 
-const HistoryList = () => {
+const shuffleArray = (array) => [...array].sort(() => Math.random() - 0.5);
+
+const HistoryList = ({ songs }) => {
+  const [defaultSongs, setDefaultSongs] = useState([]);
+
+  useEffect(() => {
+    if (songs.length > 0) {
+      const shuffled = shuffleArray(songs);
+      setDefaultSongs(shuffled);
+    }
+  }, [songs]);
+
   return (
-    <div>
-      <ul className={styles.songList}>
-        <li className={styles.song}>
-          <img alt="song" src={`${process.env.PUBLIC_URL}/album.jpg`}></img>
-          <div className={styles.info}>
-            <ul className={styles.infoList}>
-              <li className={styles.nameSong}>
-                <span>Nombre</span>
-                <span>Artista</span>
-              </li>
-              <li>Álbum</li>
-              <li>4:00</li>
-            </ul>
-          </div>
-        </li>
-        <li>
-          <div className={styles.song}>
-            <img alt="song" src={`${process.env.PUBLIC_URL}/album.jpg`}></img>
-            <div className={styles.info}>
-              <ul className={styles.infoList}>
-                <li className={styles.nameSong}>
-                  <span>Nombre</span>
-                  <span>Artista</span>
-                </li>
-                <li>Álbum</li>
-                <li>4:00</li>
-              </ul>
-            </div>
-          </div>
-        </li>
-      </ul>
+    <div className={styles.historyWrapper}>
+      <div className={styles.tableContainer}>
+        <table className={styles.songTable}>
+          <thead>
+            <tr>
+              <th>Portada</th>
+              <th>Nombre</th>
+              <th>Artista</th>
+              <th>Álbum</th>
+              <th>Duración</th>
+            </tr>
+          </thead>
+          <tbody>
+            {defaultSongs.map((song, index) => (
+              <tr key={index}>
+                <td>
+                  <img
+                    alt={song.name}
+                    src={song.img}
+                    className={styles.albumImage}
+                  />
+                </td>
+                <td>{song.name}</td>
+                <td>{song.artist}</td>
+                <td>{song.album || "Desconocido"}</td>
+                <td>{song.duration || "3:30"}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
