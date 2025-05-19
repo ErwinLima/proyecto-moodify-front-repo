@@ -53,7 +53,7 @@ const Home = () => {
       <MyCarousel items={carouselItems} headline="Para ti" />
 
       <div className="favorite-recommendations">
-        <h3>Recomendaciones pasadas</h3>
+        <h3>Más recomendaciones para ti</h3>
 
         <HistoryList
           songs={JSON.parse(localStorage.getItem("songsDefault"))?.songs || []}
