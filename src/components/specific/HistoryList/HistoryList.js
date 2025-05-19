@@ -13,6 +13,13 @@ const HistoryList = ({ songs }) => {
     }
   }, [songs]);
 
+  // Formatea duración en segundos a "min:seg"
+  const formatDuration = (seconds) => {
+    const min = Math.floor(seconds / 60);
+    const sec = Math.floor(seconds % 60);
+    return `${min}:${sec.toString().padStart(2, "0")}`;
+  };
+
   return (
     <div className={styles.historyWrapper}>
       <div className={styles.tableContainer}>
@@ -39,7 +46,11 @@ const HistoryList = ({ songs }) => {
                 <td>{song.name}</td>
                 <td>{song.artist}</td>
                 <td>{song.album || "Desconocido"}</td>
-                <td>{song.duration || "3:30"}</td>
+                <td>
+                  {song.duration
+                    ? formatDuration(song.duration / 1000)
+                    : "3:30"}
+                </td>
               </tr>
             ))}
           </tbody>
